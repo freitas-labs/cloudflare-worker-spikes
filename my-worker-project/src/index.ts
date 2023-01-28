@@ -25,6 +25,6 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<Response> {
-		return new Response("Hello World!");
+		return new Response(null, <ResponseInit>{ status: 301, headers: { Location: 'https://github.com/freitas-labs/cloudflare-worker-spikes' } },);
 	},
 };
