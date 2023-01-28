@@ -19,12 +19,16 @@ export interface Env {
 	// MY_BUCKET: R2Bucket;
 }
 
+import * as qr from 'qr-image';
+
 export default {
 	async fetch(
 		request: Request,
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<Response> {
-		return new Response("Hello World!");
+		const code = qr.imageSync('Hello World!', { type: 'png' });
+
+		return new Response(code, <ResponseInit>{ headers: { 'content-type': 'image/png' } });
 	},
 };
